@@ -1,6 +1,4 @@
-// src/app/api/auth/callback/route.ts
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import { createClient } from '@/lib/supabase';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
@@ -8,8 +6,13 @@ export async function GET(request: Request) {
   const code = requestUrl.searchParams.get('code');
 
   if (code) {
-    const supabase = createRouteHandlerClient({ cookies });
-    await supabase.auth.exchangeCodeForSession(code);
+    const supabase = createClient();
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    
+    if (error) {
+      console.error('Auth callback error:', error);
+      return NextResponse.redirect(`${requestUrl.origin}/auth/error`);
+    }
   }
 
   // URL to redirect to after sign in process completes
