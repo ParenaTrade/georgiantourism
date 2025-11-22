@@ -22,8 +22,6 @@ export async function POST(request: Request) {
     );
   }
 
-  const supabase = createClient();
-
   switch (event.type) {
     case 'payment_intent.succeeded':
       const paymentIntent = event.data.object;
