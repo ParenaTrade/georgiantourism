@@ -1,9 +1,7 @@
-// src/app/api/webhooks/stripe/route.ts
 import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import { stripe } from '@/lib/stripe';
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import { createClient } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   const body = await request.text();
@@ -17,14 +15,14 @@ export async function POST(request: Request) {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json(
       { error: `Webhook signature verification failed: ${error.message}` },
       { status: 400 }
     );
   }
 
-  const supabase = createRouteHandlerClient({ cookies });
+  const supabase = createClient();
 
   switch (event.type) {
     case 'payment_intent.succeeded':
