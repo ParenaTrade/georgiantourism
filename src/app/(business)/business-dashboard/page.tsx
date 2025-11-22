@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 
 export default async function BusinessDashboard() {
   const supabase = createServerComponentClient();
+  const { data: { user } } = await supabase.auth.getUser();
   
   if (!user) {
     redirect('/auth/login');
@@ -100,4 +101,3 @@ export default async function BusinessDashboard() {
     </div>
   );
 }
-
