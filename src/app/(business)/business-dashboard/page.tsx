@@ -1,5 +1,5 @@
-// src/app/(business)/dashboard/page.tsx
-import { createServerComponentClient } from '@/lib/supabase-server';
+// src/app/(business)/business-dashboard/page.tsx
+import { supabase } from '@/lib/supabase'; // ✅ Bunu kullanın
 import { redirect } from 'next/navigation';
 
 export default async function BusinessDashboard() {
