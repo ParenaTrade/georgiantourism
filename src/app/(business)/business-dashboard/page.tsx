@@ -19,23 +19,35 @@ export default async function BusinessDashboard() {
     redirect('/business/setup');
   }
 
+  // Get hotel IDs for this business
+  const { data: hotels } = await supabase
+    .from('hotels')
+    .select('id')
+    .eq('business_id', business.id);
+
+  const hotelIds = hotels?.map(hotel => hotel.id) || [];
+
+  // Get restaurant IDs for this business
+  const { data: restaurants } = await supabase
+    .from('restaurants')
+    .select('id')
+    .eq('business_id', business.id);
+
+  const restaurantIds = restaurants?.map(restaurant => restaurant.id) || [];
+
   // Get stats - pending bookings
   const { count: pendingBookingsCount } = await supabase
     .from('hotel_bookings')
     .select('id', { count: 'exact', head: true })
     .eq('status', 'pending')
-    .in('hotel_id', 
-      supabase.from('hotels').select('id').eq('business_id', business.id)
-    );
+    .in('hotel_id', hotelIds);
 
   // Get stats - pending orders
   const { count: pendingOrdersCount } = await supabase
     .from('restaurant_orders')
     .select('id', { count: 'exact', head: true })
     .eq('status', 'pending')
-    .in('restaurant_id', 
-      supabase.from('restaurants').select('id').eq('business_id', business.id)
-    );
+    .in('restaurant_id', restaurantIds);
 
   return (
     <div className="container mx-auto p-6">
