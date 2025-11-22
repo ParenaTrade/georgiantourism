@@ -1,4 +1,37 @@
-// src/types/database.ts
+// Main Database type - Supabase'in otomatik generate ettiği type
+export interface Database {
+  public: {
+    Tables: {
+      profiles: {
+        Row: Profile;
+        Insert: Omit<Profile, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<Profile, 'id' | 'created_at'>>;
+      };
+      businesses: {
+        Row: Business;
+        Insert: Omit<Business, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<Business, 'id' | 'created_at'>>;
+      };
+      hotel_bookings: {
+        Row: HotelBooking;
+        Insert: Omit<HotelBooking, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<HotelBooking, 'id' | 'created_at'>>;
+      };
+      restaurant_orders: {
+        Row: RestaurantOrder;
+        Insert: Omit<RestaurantOrder, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<RestaurantOrder, 'id' | 'created_at'>>;
+      };
+      payment_methods: {
+        Row: PaymentMethod;
+        Insert: Omit<PaymentMethod, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<PaymentMethod, 'id' | 'created_at'>>;
+      };
+      // Diğer tabloları buraya ekleyebilirsiniz
+    };
+  };
+}
+
 export type UserType = 'customer' | 'business_owner' | 'admin';
 export type BusinessType = 'hotel' | 'restaurant' | 'casino' | 'events' | 'real_estate' | 'other';
 export type BusinessStatus = 'pending_verification' | 'verified' | 'suspended' | 'banned' | 'rejected';
@@ -98,6 +131,4 @@ export interface PaymentMethod {
   api_endpoint: string | null;
   created_at: string;
   updated_at: string;
-
 }
-
