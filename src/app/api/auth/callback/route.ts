@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'; // ✅ Bu satırı ekleyin
+import { createSupabaseClient } from '@/lib/supabase'; // ✅ Yeni isim
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
@@ -6,7 +6,7 @@ export async function GET(request: Request) {
   const code = requestUrl.searchParams.get('code');
 
   if (code) {
-    const supabase = createClient();
+       const supabase = createSupabaseClient(); // ✅ Yeni isim
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     
     if (error) {
