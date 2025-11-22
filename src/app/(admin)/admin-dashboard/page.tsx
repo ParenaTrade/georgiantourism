@@ -1,5 +1,7 @@
+'use client'; // ✅ BU SATIRI EKLEYİN
+
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase'; // ✅ Client component'te bu kullanılır
+import { supabase } from '@/lib/supabase';
 
 interface AdminStats {
   total_users: number;
