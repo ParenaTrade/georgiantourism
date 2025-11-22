@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabase';
 import { Database } from '@/types/database';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
@@ -38,3 +38,4 @@ export const supabaseAdmin = createClient<Database>(
     },
   }
 );
+
