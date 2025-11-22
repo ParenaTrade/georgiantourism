@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 import { Database } from '@/types/database';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
@@ -17,8 +17,8 @@ export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
   },
 });
 
-// createClient fonksiyonunu da export edin
-export const createClient = () => {
+// createClient fonksiyonunu farklı isimle export edin
+export const createSupabaseClient = () => {
   return createClient<Database>(supabaseUrl, supabaseAnonKey, {
     auth: {
       persistSession: true,
@@ -38,4 +38,3 @@ export const supabaseAdmin = createClient<Database>(
     },
   }
 );
-
