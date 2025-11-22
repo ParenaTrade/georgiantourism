@@ -1,6 +1,6 @@
 // src/app/(business)/layout.tsx
 'use client';
-
+import '../globals.css'; // ✅ Doğru - bir üst klasörde
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
