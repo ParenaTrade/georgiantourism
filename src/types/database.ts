@@ -4,7 +4,6 @@ export type BusinessType = 'hotel' | 'restaurant' | 'casino' | 'events' | 'real_
 export type BusinessStatus = 'pending_verification' | 'verified' | 'suspended' | 'banned' | 'rejected';
 export type BookingStatus = 'pending' | 'confirmed' | 'cancelled' | 'completed';
 export type PaymentStatus = 'pending' | 'completed' | 'failed' | 'refunded';
-preparation_started_at?: string; // ✅ Bu satırı ekleyin
 export type OrderStatus = 'pending' | 'accepted' | 'preparing' | 'ready' | 'dispatched' | 'delivered' | 'cancelled' | 'rejected';
 export type PaymentMethodType = 'iban_transfer' | 'credit_card' | 'crypto' | 'wallet';
 
@@ -79,6 +78,7 @@ export interface RestaurantOrder {
   total_price: number;
   status: OrderStatus;
   payment_status: PaymentStatus;
+  preparation_started_at?: string; // ✅ Bu satırı ekleyin
   payment_id: string | null;
   special_instructions: string | null;
   business_notes: string | null;
@@ -100,3 +100,4 @@ export interface PaymentMethod {
   updated_at: string;
 
 }
+
