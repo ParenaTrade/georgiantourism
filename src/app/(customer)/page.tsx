@@ -1,10 +1,10 @@
-import { supabase } from '@/lib/supabase';
+import { createServerComponentClient } from '@/lib/supabase-server';
 import { redirect } from 'next/navigation';
 import { BookingCard } from '@/components/booking/booking-card';
 import { OrderCard } from '@/components/order/order-card';
 
 export default async function CustomerHomePage() {
-  const { data: { user } } = await supabase.auth.getUser();
+  const supabase = createServerComponentClient();
   
   if (!user) {
     redirect('/auth/login');
@@ -86,3 +86,4 @@ export default async function CustomerHomePage() {
     </div>
   );
 }
+
