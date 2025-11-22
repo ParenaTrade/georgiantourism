@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createClient } from '@/lib/supabase'; // ✅ createClient kullanın
+import { supabase } from '@/lib/supabase'; // ✅ Bu şekilde kullanın
 
 interface AdminStats {
   total_users: number;
@@ -20,8 +20,6 @@ export default function AdminDashboard() {
   }, []);
 
   const fetchStats = async () => {
-    const supabase = createClient(); // ✅ Her istekte yeni client oluştur
-    
     // Fetch users count
     const { count: totalUsers } = await supabase
       .from('profiles')
