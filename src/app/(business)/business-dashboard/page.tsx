@@ -1,8 +1,8 @@
-import { createServerComponentClient } from '@/lib/supabase-server';
+import { createServerSupabaseClient } from '@/lib/supabase-server'; // ✅ Yeni isim
 import { redirect } from 'next/navigation';
 
 export default async function BusinessDashboard() {
-  const supabase = createServerComponentClient();
+  const supabase = createServerSupabaseClient(); // ✅ Yeni isim
   const { data: { user } } = await supabase.auth.getUser();
   
   if (!user) {
@@ -101,3 +101,4 @@ export default async function BusinessDashboard() {
     </div>
   );
 }
+
