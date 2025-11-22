@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { User } from '@supabase/supabase-js';
-import { createClient } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase'; // ✅ Mevcut instance
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
