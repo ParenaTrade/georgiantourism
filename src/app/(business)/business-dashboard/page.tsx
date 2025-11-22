@@ -1,8 +1,8 @@
-import { supabase } from '@/lib/supabase';
+import { createServerComponentClient } from '@/lib/supabase-server';
 import { redirect } from 'next/navigation';
 
 export default async function BusinessDashboard() {
-  const { data: { user } } = await supabase.auth.getUser();
+  const supabase = createServerComponentClient();
   
   if (!user) {
     redirect('/auth/login');
@@ -100,3 +100,4 @@ export default async function BusinessDashboard() {
     </div>
   );
 }
+
