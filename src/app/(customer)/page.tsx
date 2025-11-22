@@ -5,6 +5,7 @@ import { OrderCard } from '@/components/order/order-card';
 
 export default async function CustomerHomePage() {
   const supabase = createServerComponentClient();
+  const { data: { user } } = await supabase.auth.getUser(); // ✅ user'ı tanımla
   
   if (!user) {
     redirect('/auth/login');
@@ -86,4 +87,3 @@ export default async function CustomerHomePage() {
     </div>
   );
 }
-
