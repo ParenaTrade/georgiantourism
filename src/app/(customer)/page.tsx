@@ -1,10 +1,10 @@
-import { createServerComponentClient } from '@/lib/supabase-server';
+import { createServerSupabaseClient } from '@/lib/supabase-server'; // ✅ Yeni isim
 import { redirect } from 'next/navigation';
 import { BookingCard } from '@/components/booking/booking-card';
 import { OrderCard } from '@/components/order/order-card';
 
 export default async function CustomerHomePage() {
-  const supabase = createServerComponentClient();
+  const supabase = createServerSupabaseClient(); // ✅ Yeni isim
   const { data: { user } } = await supabase.auth.getUser(); // ✅ user'ı tanımla
   
   if (!user) {
@@ -87,3 +87,4 @@ export default async function CustomerHomePage() {
     </div>
   );
 }
+
