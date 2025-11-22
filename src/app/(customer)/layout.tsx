@@ -1,5 +1,5 @@
 // src/app/layout.tsx
-import './globals.css';
+import '../globals.css'; // ✅ Doğru - bir üst klasörde
 import { Inter } from 'next/font/google';
 import { AuthProvider } from '@/components/providers/auth-provider';
 import { RealtimeProvider } from '@/components/providers/realtime-provider';
@@ -27,4 +27,5 @@ export default function RootLayout({
       </body>
     </html>
   );
+
 }
